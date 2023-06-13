@@ -18,8 +18,12 @@ module.exports = (client) => {
         client.on(eventName, async(arg) => {
             for(const eventFile of eventFiles){
 
-                const eventFunction = require(eventFile);
-                await eventFunction(client, arg)
+                try {
+                    const eventFunction = require(eventFile);
+                    await eventFunction(client, arg)
+                }catch (error){
+                    console.log(`Error: ${error}! From calling eventfile: ${eventFile}`);
+                }
 
             }
         })

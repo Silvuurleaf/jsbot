@@ -3,7 +3,6 @@ const getLocalCommands = require('../../utils/getLocalCommands')
 const areCommandsDifferent = require('../../utils/areCommandsDifferent')
 const getApplicationCommands = require('../../utils/getApplicationCommands')
 module.exports = async (client) => {
-    const localCommands = getLocalCommands()
 
     try {
         const localCommands = getLocalCommands();

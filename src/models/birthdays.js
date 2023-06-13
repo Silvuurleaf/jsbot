@@ -26,7 +26,6 @@ const birthdaySchema = new Schema({
         required: true,
     },
 
-
     defaultMessage: {
         type: String,
         required: false,

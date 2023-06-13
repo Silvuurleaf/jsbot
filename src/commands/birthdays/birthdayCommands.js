@@ -1,5 +1,6 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits} = require('discord.js')
 const DB = require("../../models/birthdays")
+const Module = require("module");
 
 module.exports = {
     name: 'birthday',
@@ -60,7 +61,7 @@ module.exports = {
 
 
 
-    callback: (client, interaction) => {
+    callback: async (client, interaction) => {
         interaction.reply(`Birthday Command!`);
 
         const {guild, user, options} = interaction
@@ -76,6 +77,27 @@ module.exports = {
                 const day = options.getInteger('day');
                 const month = options.getInteger('month');
                 const year = options.getInteger('year');
+
+                if(day > 31 || day <= 0) return interaction.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor("Blue")
+                            .setDescription(`Day should be between 1-31`)
+                    ],
+                    ephemeral: true
+                })
+
+                if(month > 12 || month <= 0) return interaction.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor("Blue")
+                            .setDescription(`Month should be between 1-12`)
+                    ],
+                    ephemeral: true
+                })
+
+                await interaction.deferReply()
+
             }
         }
 
