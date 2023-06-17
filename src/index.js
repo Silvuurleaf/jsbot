@@ -1,6 +1,8 @@
 require("dotenv").config();
 const mongoose = require('mongoose');
+
 const eventHandler = require('./handlers/eventHandler');
+const congrats = require("./events/daily/congratulate");
 
 const { Client, GatewayIntentBits } = require('discord.js')
 const client = new Client({
@@ -22,12 +24,21 @@ const client = new Client({
     try{
         await mongoose.set('strictQuery', false);
         await mongoose.connect(process.env.SERVER_CONN_STRING, {keepalive: true});
+
+        //module.exports.timedCheck = undefined;
+        //module.exports.val = 0;
+
+
         console.log("connected to mongoDB");
+
+        setInterval(await function () {congrats.congrats(client)}, 5000);
+
         eventHandler(client);
 
         client.login(process.env.BOTTOKEN).then(
             r => console.log(r)
         );
+
     }
     catch (error){
         console.log(`Error:  ${error}`);

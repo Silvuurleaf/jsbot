@@ -1,6 +1,8 @@
 
 const {Client, Message} = require('discord.js');
 const Birthday = require('../../models/birthdays');
+const CheckBotPrefix = require('../../utils/checkBotPrefix');
+const CommandsFromContent = require('../../utils/getCommandsFromContent');
 
 /**
  *
@@ -12,29 +14,18 @@ module.exports = async (client, message) => {
 
     if(!message.inGuild() || message.author.bot) return;
 
+    const [, matchedPrefix] = CheckBotPrefix(client,message);
 
-    const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const prefix = '!'
+    if(!matchedPrefix)
+        return
 
-    //prefix for @-ing the bot
-    let botPrefix = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`)
-    //check if message matches bot prefix if not escape
-    if (!botPrefix.test(message.content)) return;
-
-    const [, matchedPrefix] = message.content.match(botPrefix)
-
-    //get the commands following the prefix
-    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/)
-
-    console.log(args);
-
-    //command is the 2nd entry in args
-    const command = args[1];
+    const command = CommandsFromContent(message, matchedPrefix);
 
 
     //general message information
     let _userId = message.author.id;
     let _guildId = message.guildId;
+    let _channelId = message.channelId;
 
 
     //COMMANDS ASSOCIATED WITH BIRTHDAY BOT
@@ -106,16 +97,18 @@ module.exports = async (client, message) => {
                                 console.log('save data to mongoDB');
 
                                 let date_arr = msg.split('/')
-                                let day = Number(date_arr[0]);
-                                let month = Number(date_arr[1]);
+                                let month = Number(date_arr[0]);
+                                let day = Number(date_arr[1]);
                                 let year = Number(date_arr[2]);
 
-                                console.log(`Parsed date ${day}/${month}/${year}`);
+                                console.log(`Parsed date ${month}/${day}/${year}`);
 
 
                                 let newBirthday = new Birthday({
                                     userId: _userId,
                                     guildId: _guildId,
+                                    channelId: _channelId,
+                                    username: message.member,
                                     Day: day,
                                     Month: month,
                                     Year: year

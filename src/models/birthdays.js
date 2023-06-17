@@ -11,6 +11,16 @@ const birthdaySchema = new Schema({
         required: true,
     },
 
+    channelId: {
+        type: String,
+        required: true,
+    },
+
+    username: {
+        type: String,
+        required: true,
+    },
+
     Day: {
         type: Number,
         required: true,
@@ -25,12 +35,6 @@ const birthdaySchema = new Schema({
         type: Number,
         required: true,
     },
-
-    defaultMessage: {
-        type: String,
-        required: false,
-    },
-
 
 
 });

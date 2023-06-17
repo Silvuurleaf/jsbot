@@ -15,6 +15,7 @@ module.exports = (client) => {
         eventFiles.sort((a,b) => a > b);
         //console.log(eventFiles);
 
+
         client.on(eventName, async(arg) => {
             for(const eventFile of eventFiles){
 

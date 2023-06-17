@@ -5,7 +5,7 @@ const Module = require("module");
 module.exports = {
     name: 'birthday',
     description: 'Add remove and check birthday!',
-    deleted: false,
+    deleted: true,
     //devOnly: Boolean,
     //testOnly: Boolean,
     options: [

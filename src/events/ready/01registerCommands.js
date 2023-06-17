@@ -9,9 +9,10 @@ module.exports = async (client) => {
         const applicationCommands = await getApplicationCommands(client, testServer)
 
         //compare local and application commands
-
         for (const localCommand of localCommands){
             const {name, description, options} = localCommand;
+
+            console.log(`name: ${name}, desc: ${description}`);
 
             const existingCommand = await applicationCommands.cache.find(
                 (cmd) => cmd.name === name
@@ -32,6 +33,9 @@ module.exports = async (client) => {
                     console.log(`Edited command "${name}"`);
                 }
             } else {
+
+                console.log(`registering new command ${localCommand}`);
+
                 if(localCommand.deleted){
                     console.log(`Skipping registered command "${name}" as the
                      command is to be deleted`);
@@ -49,7 +53,7 @@ module.exports = async (client) => {
         }
 
     }catch (error){
-        console.log(`An error occured: ${error}`);
+        console.log(`An error occured registering commands: ${error}`);
     }
 
 
