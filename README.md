@@ -46,12 +46,16 @@ the conversation and require the command to be entered again.
 The bot expects birthday's to be in the format MM/DD/YYYY other formats will not be processed.
 
 #### Message Commands
-!jsbot add          Starts a DM with the bot and add their birthday to the DB
-!jsbot delete       Starts a DM with the bot and if the user has a registered birthday they may delete it
-!jsbot edit         Starts a DM with the bot and if the user has a registered birthday they may change it
+!jsbot add &nbsp;&nbsp;         Starts a DM with the bot and add their birthday to the DB
+
+!jsbot delete &nbsp;&nbsp;      Starts a DM with the bot and if the user has a registered birthday they may delete it.
+
+!jsbot edit  &nbsp;&nbsp;       Starts a DM with the bot and if the user has a registered birthday they may change it
+
 
 #### Slash Commands
 Currently, there is only one slash command
+
 /help               *WIP* Will display all the message commands avaliable to the bot
 
 ###
