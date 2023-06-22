@@ -59,3 +59,6 @@ Currently, there is only one slash command
 /help               *WIP* Will display all the message commands avaliable to the bot
 
 ###
+
+The bot will check the database once a day to see if there are any matching birthdays for the current date.
+If there is a birthday a message will be sent to first text chat mentioning the user and their age.
