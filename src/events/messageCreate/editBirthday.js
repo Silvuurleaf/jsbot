@@ -108,10 +108,10 @@ module.exports = async (client, message) => {
 
                                 console.log(`Parsed date ${month}/${day}/${year}`);
 
-
                                 let filter = {
-                                    userId: message.author.id,
-                                    guildId: message.guildId
+                                    userId: _userId,
+                                    guildId: _guildId,
+                                    channelId: _channelId,
                                 }
 
                                 let query = {
