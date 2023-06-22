@@ -5,6 +5,7 @@ const congrats = async function (client) {
 
     console.log("checking bdays")
 
+    //Gets the current date
     const currDate = Date.now();
     const dt = new Date(currDate)
 
@@ -12,12 +13,10 @@ const congrats = async function (client) {
     let month = dt.getMonth() + 1;
     let year = dt.getFullYear();
 
-    day = 24;
-    month = 5;
-
     //format query for current day
     let query = {Day:day, Month: month};
 
+    //perform search on database (mongo) for users with matching birthday
     try {
         const birthdays = await Birthday.find(query);
 
@@ -26,8 +25,7 @@ const congrats = async function (client) {
             return;
         }
 
-
-        for(let i =0; i < birthdays.length; i++){
+        for(let i = 0; i < birthdays.length; i++){
 
             console.log("getting channel id");
             let channelId = birthdays[i].channelId;
