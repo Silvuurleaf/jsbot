@@ -27,6 +27,7 @@ const client = new Client({
 (async () => {
 
     try{
+
         await mongoose.set('strictQuery', false);
         await mongoose.connect(process.env.SERVER_CONN_STRING, {keepalive: true});
 
@@ -35,14 +36,11 @@ const client = new Client({
 
         //check mongoDB for current bdays
         setInterval(await function () {congrats.congrats(client)}, congrats_interval);
-
         //start event handler
         eventHandler(client);
-
         //login to using bot token
-        client.login(process.env.BOTTOKEN).then(
-            r => console.log(r)
-        );
+
+        await client.login(process.env.BOTTOKEN)
 
     }
     catch (error){
