@@ -1,8 +1,9 @@
 
-const {Client, Message} = require('discord.js');
 const Birthday = require('../../models/birthdays');
-const CheckBotPrefix = require('../../utils/checkBotPrefix');
-const CommandsFromContent = require('../../utils/getCommandsFromContent');
+
+import {Client, Message} from "discord.js";
+import CheckBotPrefix from "../../utils/checkBotPrefix.js";
+import GetCommandsFromContent from "../../utils/getCommandsFromContent.js";
 
 /**
  *
@@ -22,7 +23,7 @@ module.exports = async (client, message) => {
         return
 
     //get the command from the message
-    const command = CommandsFromContent(message, matchedPrefix);
+    const command = GetCommandsFromContent(message, matchedPrefix);
 
 
     //general message information

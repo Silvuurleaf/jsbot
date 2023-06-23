@@ -1,8 +1,9 @@
-const path = require('path');
-const getAllFiles = require('../utils/getAllFiles');
+import path from 'path';
+import getAllFiles from "../utils/getAllFiles.js";
 
-module.exports = (client) => {
+const eventHandler = function(client) {
 
+    //change path to process.cwd() for replit deployment
     const eventFolders = getAllFiles(path.join(__dirname, '..', 'events'), true);
 
     for (const eventFolder of eventFolders) {
@@ -26,8 +27,11 @@ module.exports = (client) => {
                     console.log(`Error: ${error}! From calling eventfile: ${eventFile}`);
                 }
 
+
             }
         })
     }
 
 };
+
+export default eventHandler;

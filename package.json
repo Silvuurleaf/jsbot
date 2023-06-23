@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "discord.js": "^14.11.0",
     "djs-commander": "^0.0.47",
     "dotenv": "^16.1.4",
+    "express": "^4.18.2",
     "mongoose": "^7.2.2"
   }
 }

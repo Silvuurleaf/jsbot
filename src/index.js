@@ -1,8 +1,10 @@
 require("dotenv").config();
-const mongoose = require('mongoose');
 
-const eventHandler = require('./handlers/eventHandler');
-const congrats = require("./events/daily/congratulate");
+import mongoose from 'mongoose';
+import keepAlive from './server.js'
+
+import eventHandler from './handlers/eventHandler.js'
+import congrats from './events/daily/congratulate.js'
 
 const { Client, GatewayIntentBits } = require('discord.js')
 
@@ -40,7 +42,9 @@ const client = new Client({
         eventHandler(client);
         //login to using bot token
 
-        await client.login(process.env.BOTTOKEN)
+        await client.login(process.env.BOTTOKEN);
+        keepAlive();
+
 
     }
     catch (error){

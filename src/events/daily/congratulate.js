@@ -1,5 +1,5 @@
-const {Client, Message} = require('discord.js');
-const Birthday = require('../../models/birthdays');
+import {Client, Message} from 'discord.js';
+import Birthday from '../../models/birthdays.js';
 
 const congrats = async function (client) {
 
@@ -42,4 +42,4 @@ const congrats = async function (client) {
 
 }
 
-module.exports = {congrats}
+export default congrats;
