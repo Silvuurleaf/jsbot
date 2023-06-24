@@ -1,9 +1,11 @@
-
 import {devs, testServer} from '../../../config.json';
-
 import getLocalCommands from "../../utils/getLocalCommands.js";
 
-module.exports = async (client, interaction) => {
+
+import {devs, testServer} from '../../../config.json'
+import getLocalCommands from "../../utils/getLocalCommands.js";
+
+const handleCommands = async function (client, interaction){
     if(!interaction.isChatInputCommand()) return;
 
     const localCommands = getLocalCommands();
@@ -69,4 +71,6 @@ module.exports = async (client, interaction) => {
         console.log(`There was an error running this command: ${error}`);
     }
 
-};
+}
+
+export default handleCommands;

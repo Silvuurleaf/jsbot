@@ -1,4 +1,4 @@
-const areCommandsDifferent = function(existingCommand, localCommand) {
+const areCommandsDifferent =function(existingCommand, localCommand) {
     const areChoicesDifferent = (existingChoices, localChoices) => {
         for (const localChoice of localChoices) {
             const existingChoice = existingChoices?.find(

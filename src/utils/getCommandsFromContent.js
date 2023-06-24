@@ -1,4 +1,4 @@
-const getCommandsFromContent = function(message, matchedPrefix){
+const CommandsFromContent = function(message, matchedPrefix) {
 
     //get the commands following the prefix
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/)
@@ -9,4 +9,4 @@ const getCommandsFromContent = function(message, matchedPrefix){
     return args[1];
 };
 
-export default getCommandsFromContent;
+export default CommandsFromContent;

@@ -1,13 +1,12 @@
-require("dotenv").config();
-
-import mongoose from 'mongoose';
-import keepAlive from './server.js'
+import dotenv from 'dotenv';
+import mongoose from 'mongoose'
 
 import eventHandler from './handlers/eventHandler.js'
 import congrats from './events/daily/congratulate.js'
+import {Client, GatewayIntentBits} from 'discord.js'
 
-const { Client, GatewayIntentBits } = require('discord.js')
 
+dotenv.config()
 
 // 24 hr interval
 const congrats_interval = 1000 * 60 * 60 * 24

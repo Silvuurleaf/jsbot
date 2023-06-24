@@ -1,10 +1,8 @@
 
-const {Client, Message} = require('discord.js');
-
 import {Client, Message} from "discord.js";
+import Birthday from '../../models/birthdays.js'
 import CheckBotPrefix from "../../utils/checkBotPrefix.js";
-import GetCommandsFromContent from "../../utils/getCommandsFromContent.js";
-
+import CommandsFromContent from "../../utils/getCommandsFromContent.js";
 
 
 /**

@@ -1,7 +1,15 @@
-import path from 'path';
+import path from 'path'
 import getAllFiles from './getAllFiles.js'
-const getLocalCommands = function(exceptions = []) {
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const getLocalCommands = function(exceptions = []){
     let localCommands = [];
+
+    //TODO need to change __dirname to process.cwd() for replit
 
     const commandCategories = getAllFiles(
         path.join(__dirname, '..','commands'),

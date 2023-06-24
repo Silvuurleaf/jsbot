@@ -1,5 +1,10 @@
-import path from 'path';
-import getAllFiles from "../utils/getAllFiles.js";
+import path from 'path'
+import getAllFiles from '../utils/getAllFiles.js'
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const eventHandler = function(client) {
 
@@ -21,6 +26,7 @@ const eventHandler = function(client) {
             for(const eventFile of eventFiles){
 
                 try {
+                    //TODO is this an issue with es6
                     const eventFunction = require(eventFile);
                     await eventFunction(client, arg)
                 }catch (error){

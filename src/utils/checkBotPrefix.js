@@ -1,4 +1,4 @@
-const checkBotPrefix = function(client, message) {
+const CheckBotPrefix = function (client, message){
 
     const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const prefix = '!'
@@ -12,4 +12,4 @@ const checkBotPrefix = function(client, message) {
 
 };
 
-export default checkBotPrefix;
+export default CheckBotPrefix;
