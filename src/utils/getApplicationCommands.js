@@ -1,4 +1,4 @@
-module.exports = async (client, guildId)=>{
+const getApplicationCommands = async function(client, guildId){
     let applicationCommands;
 
     if(guildId){
@@ -12,3 +12,5 @@ module.exports = async (client, guildId)=>{
 
     return applicationCommands;
 };
+
+export default getApplicationCommands;

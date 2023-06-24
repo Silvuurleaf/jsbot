@@ -1,4 +1,4 @@
-module.exports = (message, matchedPrefix) => {
+const CommandsFromContent = function(message, matchedPrefix) {
 
     //get the commands following the prefix
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/)
@@ -8,3 +8,5 @@ module.exports = (message, matchedPrefix) => {
     //Can be changed to handle more inputs
     return args[1];
 };
+
+export default CommandsFromContent;

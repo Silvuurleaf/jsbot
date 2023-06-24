@@ -1,8 +1,9 @@
-const {testServer} = require('../../../config.json');
-const getLocalCommands = require('../../utils/getLocalCommands')
-const areCommandsDifferent = require('../../utils/areCommandsDifferent')
-const getApplicationCommands = require('../../utils/getApplicationCommands')
-module.exports = async (client) => {
+import testServer from '../../../config.json'
+import getLocalCommands from "../../utils/getLocalCommands.js";
+import areCommandsDifferent from "../../utils/areCommandsDifferent.js";
+import getApplicationCommands from "../../utils/getApplicationCommands.js";
+
+const registerCommands = async function(client) {
 
     try {
         const localCommands = getLocalCommands();
@@ -59,3 +60,5 @@ module.exports = async (client) => {
 
 
 };
+
+export default registerCommands;

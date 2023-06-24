@@ -1,8 +1,7 @@
-const {Client, Message} = require('discord.js');
-const Birthday = require('../../models/birthdays');
-const CheckBotPrefix = require('../../utils/checkBotPrefix');
-const CommandsFromContent = require('../../utils/getCommandsFromContent');
-
+import {Client, Message} from "discord.js";
+import Birthday from '../../models/birthdays.js'
+import CheckBotPrefix from "../../utils/checkBotPrefix.js";
+import CommandsFromContent from "../../utils/getCommandsFromContent.js";
 /**
  *
  * @param {Client} client

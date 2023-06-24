@@ -1,8 +1,15 @@
-const path = require('path')
-const getAllFiles = require('./getAllFiles');
+import path from 'path'
+import getAllFiles from './getAllFiles.js'
 
-module.exports = (exceptions = []) => {
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const getLocalCommands = function(exceptions = []){
     let localCommands = [];
+
+    //TODO need to change __dirname to process.cwd() for replit
 
     const commandCategories = getAllFiles(
         path.join(__dirname, '..','commands'),
@@ -32,3 +39,5 @@ module.exports = (exceptions = []) => {
 
     return localCommands;
 }
+
+export default getLocalCommands;
