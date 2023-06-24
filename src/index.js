@@ -41,7 +41,9 @@ const client = new Client({
         eventHandler(client);
         //login to using bot token
 
-        await client.login(process.env.BOTTOKEN)
+        await client.login(process.env.BOTTOKEN);
+        keepAlive();
+
 
     }
     catch (error){

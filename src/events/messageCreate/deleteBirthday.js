@@ -4,6 +4,7 @@ import Birthday from '../../models/birthdays.js'
 import CheckBotPrefix from "../../utils/checkBotPrefix.js";
 import CommandsFromContent from "../../utils/getCommandsFromContent.js";
 
+
 /**
  *
  * @param {Client} client
@@ -22,7 +23,7 @@ module.exports = async (client, message) => {
         return
 
     //get the command from the message
-    const command = CommandsFromContent(message, matchedPrefix);
+    const command = GetCommandsFromContent(message, matchedPrefix);
 
 
     //general message information

@@ -1,3 +1,6 @@
+import {devs, testServer} from '../../../config.json';
+import getLocalCommands from "../../utils/getLocalCommands.js";
+
 
 import {devs, testServer} from '../../../config.json'
 import getLocalCommands from "../../utils/getLocalCommands.js";

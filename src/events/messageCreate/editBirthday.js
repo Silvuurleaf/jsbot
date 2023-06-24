@@ -20,7 +20,7 @@ module.exports = async (client, message) => {
         return
 
     //get the command from the message
-    const command = CommandsFromContent(message, matchedPrefix);
+    const command = GetCommandsFromContent(message, matchedPrefix);
 
 
     //general message information

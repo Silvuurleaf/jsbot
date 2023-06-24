@@ -1,4 +1,3 @@
-
 const areCommandsDifferent =function(existingCommand, localCommand) {
     const areChoicesDifferent = (existingChoices, localChoices) => {
         for (const localChoice of localChoices) {
