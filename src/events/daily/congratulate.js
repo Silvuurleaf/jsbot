@@ -1,4 +1,4 @@
-const {Client, Message, EmbedBuilder} = require('discord.js');
+const { EmbedBuilder} = require('discord.js');
 const Birthday = require('../../models/birthdays');
 
 const search = require('youtube-search');
