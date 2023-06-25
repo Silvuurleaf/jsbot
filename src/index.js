@@ -8,7 +8,8 @@ const { Client, GatewayIntentBits } = require('discord.js')
 
 
 // 24 hr interval
-const congrats_interval = 1000 * 60 * 60 * 24
+const congrats_interval = 5000;//1000 * 60 * 60 * 24
+
 
 const client = new Client({
     intents: [

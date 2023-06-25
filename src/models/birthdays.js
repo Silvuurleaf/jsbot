@@ -36,6 +36,11 @@ const birthdaySchema = new Schema({
         required: true,
     },
 
+    name : {
+        type: String,
+        required: false,
+    }
+
 
 });
 

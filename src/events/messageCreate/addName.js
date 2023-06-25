@@ -1,4 +1,3 @@
-
 const {Client, Message} = require('discord.js');
 const Birthday = require('../../models/birthdays');
 const CheckBotPrefix = require('../../utils/checkBotPrefix');
@@ -34,7 +33,7 @@ module.exports = async (client, message) => {
     //COMMANDS ASSOCIATED WITH BIRTHDAY BOT
 
     //add birthday command
-    if (command === 'add') {
+    if (command === 'addName') {
 
         const query = {
             userId: message.author.id,
@@ -45,15 +44,15 @@ module.exports = async (client, message) => {
         try {
             const birthday = await Birthday.findOne(query);
 
-            if (birthday){
+            if (!birthday){
                 console.log(birthday);
-                await message.author.send(`${message.member} you already have a birthday registered`)
+                await message.author.send(`${message.member} you don't have a birthday registered. Add one first.`)
             }
             else {
                 console.log("no bday");
                 const msg_filter = (m) => m.author.id === message.author.id;
 
-                let conversationLog = await message.author.send(`${message.member} you don't have a birthday registered. Would you like to save one?`);
+                let conversationLog = await message.author.send(`${message.member} would you like to add your name to your birthday records`);
                 let dmChannel = conversationLog.channel;
 
                 const collector = dmChannel.createMessageCollector({msg_filter, max: 1, time:1000*10})
@@ -70,11 +69,9 @@ module.exports = async (client, message) => {
 
                     let msg = collected.first().content.toLowerCase();
 
-                    console.log(msg)
-
                     if (msg === 'yes' || 'y') {
 
-                        await message.author.send(`${message.member} please provide your birthdate MM/DD/YYYY`)
+                        await message.author.send(`${message.member} please provide your first name`)
 
                         dmChannel = conversationLog.channel;
                         const bday_collector = dmChannel.createMessageCollector({
@@ -93,42 +90,32 @@ module.exports = async (client, message) => {
                             }
 
                             let msg = collected.first().content;
-                            let date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                            let valid_date = date_regex.test(msg);
 
-                            if (!valid_date) {
-                                await message.author.send(`That was not a valid date in the form of MM/DD/YYYY. Please try again by messaging !jsbot in general chat`)
-                            } else {
-                                console.log('save data to mongoDB');
+                            console.log('save data to mongoDB');
 
-                                let date_arr = msg.split('/')
-                                let month = Number(date_arr[0]);
-                                let day = Number(date_arr[1]);
-                                let year = Number(date_arr[2]);
-
-                                console.log(`Parsed date ${month}/${day}/${year}`);
-
-
-                                let newBirthday = new Birthday({
-                                    userId: _userId,
-                                    guildId: _guildId,
-                                    channelId: _channelId,
-                                    username: message.member,
-                                    Day: day,
-                                    Month: month,
-                                    Year: year
-                                });
-
-                                try {
-                                    newBirthday = await newBirthday.save();
-                                    await message.author.send(`Thanks I've saved your birthday`);
-                                }
-                                catch (e){
-                                    console.log(`Error creating saving birthday to database for user ${message.author}`);
-                                    await message.author.send('Sorry there was an error saving your birthday. Please try again later')
-                                }
-
+                            let filter = {
+                                userId: _userId,
+                                guildId: _guildId,
+                                channelId: _channelId,
                             }
+
+                            let query = {
+                                $set: {
+                                    name: msg,
+                                },
+                            }
+
+                            Birthday.updateOne(filter, query);
+
+                            try {
+                                await Birthday.updateOne(filter, query);
+                                await message.author.send(`Thanks I've added your name to your birthday`);
+                            }
+                            catch (e){
+                                console.log(`Error creating editing birthday to database for user ${message.author}`);
+                                await message.author.send('Sorry there was an error editing your birthday. Please try again later')
+                            }
+
                         })
                     }
                 })

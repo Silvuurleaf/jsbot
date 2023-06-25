@@ -13,6 +13,7 @@
     "discord.js": "^14.11.0",
     "djs-commander": "^0.0.47",
     "dotenv": "^16.1.4",
-    "mongoose": "^7.2.2"
+    "mongoose": "^7.2.2",
+    "youtube-search": "^1.1.6"
   }
 }
